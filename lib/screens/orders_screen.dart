@@ -13,35 +13,35 @@ class OrdersScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     // final orderData = Provider.of<Orders>(context);
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Your Orders'),
-        ),
-        drawer: const AppDrawer(),
-        body: FutureBuilder(
-          future:
-              Provider.of<Orders>(context, listen: false).fetchAndSetOrders(),
-          builder: (ctx, dataSnapshot) {
-            if (dataSnapshot.connectionState == ConnectionState.waiting) {
+      appBar: AppBar(
+        title: const Text('Your Orders'),
+      ),
+      drawer: const AppDrawer(),
+      body: FutureBuilder(
+        future: Provider.of<Orders>(context, listen: false).fetchAndSetOrders(),
+        builder: (ctx, dataSnapshot) {
+          if (dataSnapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else {
+            if (dataSnapshot.error != null) {
               return const Center(
-                child: CircularProgressIndicator(),
+                child: Text('An error occurred!'),
               );
             } else {
-              if (dataSnapshot.error != null) {
-                return const Center(
-                  child: Text('An error occurred!'),
-                );
-              } else {
-                return Consumer<Orders>(
-                  builder: (ctx, orderData, child) => ListView.builder(
-                    itemBuilder: (ctx, index) => OrderItem(
-                      order: orderData.orders[index],
-                    ),
-                    itemCount: orderData.orders.length,
+              return Consumer<Orders>(
+                builder: (ctx, orderData, child) => ListView.builder(
+                  itemBuilder: (ctx, index) => OrderItem(
+                    order: orderData.orders[index],
                   ),
-                );
-              }
+                  itemCount: orderData.orders.length,
+                ),
+              );
             }
-          },
-        ));
+          }
+        },
+      ),
+    );
   }
 }
