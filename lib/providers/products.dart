@@ -61,7 +61,7 @@ class Products with ChangeNotifier {
   Product findById(String id) {
     return _items.firstWhere((prod) => prod.id == id);
   }
-
+  // this isn't use
   // void showFavoritesOnly() {
   //   _showFavoritesOnly = true;
   //   notifyListeners();
