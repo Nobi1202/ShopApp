@@ -140,6 +140,7 @@ class _AuthCardState extends State<AuthCard>
     _controller.dispose();
   }
 
+
   void _showErrorDialog(String message) {
     showDialog(
       context: context,
