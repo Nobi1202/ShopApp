@@ -152,6 +152,7 @@ class Products with ChangeNotifier {
       notifyListeners();
     } else {
       print('...');
+      print("there is something wrong!");
     }
   }
 
