@@ -42,8 +42,8 @@ class Products with ChangeNotifier {
     // ),
   ];
   // var _showFavoritesOnly = false;
-  final String authToken;
-  final String userId;
+  final String? authToken;
+  final String? userId;
 
   Products(this.authToken, this.userId, this._items);
 
@@ -61,7 +61,7 @@ class Products with ChangeNotifier {
   Product findById(String id) {
     return _items.firstWhere((prod) => prod.id == id);
   }
-
+  // this isn't use
   // void showFavoritesOnly() {
   //   _showFavoritesOnly = true;
   //   notifyListeners();
@@ -152,6 +152,7 @@ class Products with ChangeNotifier {
       notifyListeners();
     } else {
       print('...');
+      print("there must be something wrong!");
     }
   }
 
